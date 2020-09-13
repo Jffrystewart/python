@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 
 
-import requests, bs4 , webbrowser ,
-		smtplib, ssl
+import requests, bs4 , webbrowser , smtplib, ssl
 
 
+sender_email = "mcbeeffserver@gmail.com"
+receiver_email = "jffrystwrt@gmail.com"
+smtp_server = "smtp.gmail.com"
 
 spectrumurl = 'https://downdetector.com/status/spectrum/los-angeles/'
 webbrowser.open(spectrumurl)
@@ -25,8 +27,11 @@ else:
 port = 465
 password = input("Please enter a password")
 
-context = ssl.creat_default_context()
-with smtplib.SMTP_SSL("smtp.gmail.com" , port, context=context) as sever:
-	server.logiin("mcbeeffserver@gmail.com" , password)
+context = ssl.create_default_context()
+with smtplib.SMTP_SSL(smtp_server , port , context=context) as server:
+	server.login(sender_email , password)
+	server.sendmail(sender_email , receiver_email , img )
+
+
 
 print("done")
